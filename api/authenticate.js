@@ -39,15 +39,15 @@ module.exports = async (req, res) => {
   // Select the users collection from the database
   const users = await collection.find({}).toArray();
 
-
-  //check against 
-  //let accounts=users.filter(el=>el.user===req.query.user);
-  //if(accounts.length===1) {
-
-  //}
+  let message = 'error- no user match';
+  //check against users
+  let accounts=users.filter(el=>el.user===req.body.user);
+  if(accounts.length===1) {
+    message='found user : '+req.body.user
+  }
 
   // Respond with a JSON string of all users in the collection
   //res.status(200).json({ users });
-  res.status(200).send(JSON.stringify(req.body));
+  res.status(200).send(JSON.stringify(message));
   
 };
