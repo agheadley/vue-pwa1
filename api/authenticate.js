@@ -1,6 +1,7 @@
 // Import Dependencies
 const url = require("url");
 const MongoClient = require("mongodb").MongoClient;
+const bcrypt = require('bcrypt');
 
 // Create cached connection variable
 let cachedDb = null;
@@ -43,7 +44,12 @@ module.exports = async (req, res) => {
   //check against users
   let accounts=users.filter(el=>el.user===req.body.user);
   if(accounts.length===1) {
-    message='found user : '+req.body.user
+    message='found user : '+req.body.user;
+    bcrypt.compare(req.body.password, accounts[0].password, function(err, res) {
+        if(res === true) message="user authenticated."
+        // else wrong password
+    });
+
   }
 
   // Respond with a JSON string of all users in the collection
