@@ -45,6 +45,6 @@ module.exports = async (req, res) => {
 
   // Respond with a JSON string of all users in the collection
   res.status(200).json({ users });
-  res.status(200).json(login);
+  res.status(200).json({login});
   
 };
