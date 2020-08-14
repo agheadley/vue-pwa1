@@ -22,19 +22,13 @@ async function connectToDatabase(uri) {
   const db = await client.db(url.parse(uri).pathname.substr(1));
 
   // Cache the database connection and return the connection
-  cachedDb = dcdb;
+  cachedDb = db;
   return db;
 }
 
 // The main, exported, function of the endpoint,
 // dealing with the request and subsequent response
 module.exports = async (req, res) => {
-
-    let query = req.query;
-
-
-
-
   // Get a database connection, cached or otherwise,
   // using the connection string environment variable as the argument
   const db = await connectToDatabase(process.env.MONGODB_URI);
@@ -47,5 +41,4 @@ module.exports = async (req, res) => {
 
   // Respond with a JSON string of all users in the collection
   res.status(200).json({ users });
-  //res.status(200).json(query);
 };
