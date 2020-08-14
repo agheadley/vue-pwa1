@@ -49,9 +49,9 @@ module.exports = async (req, res) => {
         if(bcryptResponse === true) {
             message="user authenticated."
         // else wrong password
-        res.status(200).send(JSON.stringify(message));
+        res.status(200).send('authenticated');
         } else {
-            res.status(200).send(JSON.stringify('error.'));
+            res.status(200).send('error:authentication');
         }
     });
 
