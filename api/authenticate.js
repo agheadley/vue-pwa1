@@ -40,7 +40,6 @@ module.exports = async (req, res) => {
   // Select the users collection from the database
   const users = await collection.find({}).toArray();
 
-  let message = 'error- no user match';
   //check against users
   let accounts=users.filter(el=>el.user===req.body.user);
   if(accounts.length===1) {

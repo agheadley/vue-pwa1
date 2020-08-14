@@ -3,6 +3,7 @@
     <v-btn @click="mongo1">API \mongo1</v-btn>
     <v-btn @click="authenticate">API \authenticate</v-btn>
     <v-btn @click="authenticate2">API \authenticate2</v-btn>
+    <v-btn >{{message}}</v-btn>
 
     <v-row class="text-center">
       <v-col cols="12">
@@ -135,6 +136,8 @@ async function postData(url = '', data = {}) {
   postData('/api/authenticate', { user: 'agh',password:'x1'})
   .then(data => {
     console.log(data); // JSON data parsed by `data.json()` call
+    if(data.res) this.message="authenticated user";
+    else this.message="user/password error"
   });
 },
       authenticate2() {
@@ -165,6 +168,7 @@ async function postData(url = '', data = {}) {
     },
     data: () => ({
       login:'agh',
+      message:'',
       ecosystem: [
         {
           text: 'vuetify-loader',

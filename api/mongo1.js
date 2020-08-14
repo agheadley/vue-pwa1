@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
   // Select the users collection from the database
   const users = await collection.find({}).toArray();
 
+    //console.log(users);
 
   //check against 
   //let accounts=users.filter(el=>el.user===req.query.user);
@@ -48,6 +49,9 @@ module.exports = async (req, res) => {
 
   // Respond with a JSON string of all users in the collection
   //res.status(200).json({ users });
-  res.status(200).send(JSON.stringify(req.query));
+  //res.status(200).send(JSON.stringify(req.query));
+  res.status(200).send(JSON.stringify(users));
+  
+
   
 };
