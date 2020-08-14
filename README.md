@@ -39,6 +39,8 @@ npm install --save mongodb
 npm install --save url
 (sets up package.json for vercel to read)
 
+npm install --save bcrypt
+
 
 
 ## Project setup

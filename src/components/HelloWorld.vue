@@ -98,7 +98,7 @@
     name: 'HelloWorld',
     methods: {
       mongo1() {
-          fetch("/api/mongo1")
+          fetch("/api/mongo1?user="+this.login)
             .then(function(response) {
               return response.json();
             })
@@ -112,6 +112,7 @@
       },
     },
     data: () => ({
+      login:'agh',
       ecosystem: [
         {
           text: 'vuetify-loader',
