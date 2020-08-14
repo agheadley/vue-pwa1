@@ -44,16 +44,21 @@ module.exports = async (req, res) => {
   //check against users
   let accounts=users.filter(el=>el.user===req.body.user);
   if(accounts.length===1) {
-    message='found user : '+req.body.user;
+    //message='found user : '+req.body.user;
     bcrypt.compare(req.body.password, accounts[0].password, function(err, res) {
-        if(res === true) message="user authenticated."
+        if(res === true) {
+            message="user authenticated."
         // else wrong password
+        res.status(200).send(JSON.stringify(message));
+        } else {
+            res.status(200).send(JSON.stringify('error.'));
+        }
     });
 
   }
 
   // Respond with a JSON string of all users in the collection
   //res.status(200).json({ users });
-  res.status(200).send(JSON.stringify(message));
+  
   
 };
