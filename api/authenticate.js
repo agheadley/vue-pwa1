@@ -46,13 +46,9 @@ module.exports = async (req, res) => {
   if(accounts.length===1) {
     //message='found user : '+req.body.user;
     bcrypt.compare(req.body.password, accounts[0].password, function(bcryptError, bcryptResponse) {
-        if(bcryptResponse === true) {
-            message="user authenticated."
-        // else wrong password
-        res.status(200).send('authenticated.');
-        } else {
-            res.status(200).send('error:authentication.');
-        }
+        
+        res.status(200).send(JSON.stringify({res:bcryptResponse}))
+    
     });
 
   }
