@@ -45,8 +45,8 @@ module.exports = async (req, res) => {
   let accounts=users.filter(el=>el.user===req.body.user);
   if(accounts.length===1) {
     //message='found user : '+req.body.user;
-    bcrypt.compare(req.body.password, accounts[0].password, function(err, res) {
-        if(res === true) {
+    bcrypt.compare(req.body.password, accounts[0].password, function(bcryptError, bcryptResponse) {
+        if(bcryptResponse === true) {
             message="user authenticated."
         // else wrong password
         res.status(200).send(JSON.stringify(message));
